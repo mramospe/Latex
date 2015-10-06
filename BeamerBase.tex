@@ -1,0 +1,131 @@
+%---------------------------------------%
+% Beamer base                           %
+%---------------------------------------%
+% AUTHOR: Miguel Ramos Pernas		%
+% e-mail: miguel.ramos.pernas@cern.ch   %
+%---------------------------------------%
+
+\documentclass[8pt, xcolor=table]{beamer}	% Document definition
+\usepackage[english]{babel}			% Language package
+\usepackage[utf8]{inputenc}			% Coding
+\usepackage{bm}					% Use bold greek letters
+\usepackage{graphicx}				% Include and manage pictures
+\usepackage{ragged2e}				% New raggedleft and raggedright commands
+\usepackage{hyperref}				% Generate hyperlinks
+\usepackage{subfigure}				% Make pictures with subfigures
+\usepackage{wrapfig}				% Generate pictures surrounded by text
+\usepackage{multirow}				% Create tables with unified rows
+\usepackage{multimedia}				% Add videos
+\usepackage{xmpmulti}				% Allows to display several pictures as an animation
+\usepackage{color, colortbl}			% Add color to tables
+\usepackage{hhline}				% Add separators to tables
+\usepackage{tikz}				% Make diagrams and manage figures-positions
+\usepackage{transparent}			% Introduce transparent pictures
+
+%-------------------------------------- DEFINES THE THEME
+\definecolor{kugreen}{RGB}{0,0,120}
+\definecolor{myblue}{RGB}{195,195,195}
+\setbeamercovered{transparent}
+\mode<presentation>
+{ \usetheme{Goettingen}
+  \useinnertheme{circles}
+  \usefonttheme{structurebold}
+  \usefonttheme[onlymath]{serif}  
+
+  \beamertemplatenavigationsymbolsempty
+
+  \usecolortheme[named = kugreen]{structure}
+  
+  \setbeamercolor*{frametitle}{fg = kugreen, bg = structure.fg!20}
+  \setbeamercolor*{block title}{fg = kugreen, bg = blue!10}
+  \setbeamercolor*{block body}{fg = black, bg = blue!5}
+  
+  \setbeamercovered{invisible}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
+  \setbeamerfont{author}{size=\footnotesize, series=\bfseries,parent=structure}
+  \setbeamerfont{date}{size=\scriptsize, series=\normalfont, parent=structure}
+}
+\setbeamertemplate{footline}[frame number]
+
+% To define a background picture
+\makeatletter
+\newbox\@backgroundblock
+\newenvironment{backgroundblock}[2]{
+  \global\setbox\@backgroundblock=\vbox\bgroup
+    \unvbox\@backgroundblock
+    \vbox to0pt\bgroup\vskip#2\hbox to0pt\bgroup\hskip#1\relax
+}{\egroup\egroup\egroup}
+\addtobeamertemplate{background}{\box\@backgroundblock}{}
+\makeatother
+
+% To set rows with different color in a table
+\makeatletter
+\def\rowcolor{\noalign{\ifnum0=`}\fi\bmr@rowcolor}
+\newcommand<>{\bmr@rowcolor}{
+\alt#1
+{\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb}
+{\ifnum0=`{\fi}\@gooble@rowcolor}
+}
+
+% New commands
+\newcommand{\MeV}{\text{MeV}}
+\newcommand{\GeV}{\text{GeV}}
+\newcommand{\@gooble@rowcolor}[2][]{\@gooble@rowcolor@}
+\newcommand{\@gooble@rowcolor@}[1][]{\@gooble@rowcolor@@}
+\newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
+\makeatother
+
+%-------------------------------------- TITLE
+\title{This is the title}
+\author[]{These are the authors}
+\institute[]{ 
+My institute\\
+\medskip
+\texttt{e-mail for the replies}
+}
+\date{\today}
+
+\begin{document}
+
+\parskip=0cm
+\justify
+
+%-------------------------------------- TITLE SLIDE
+\begin{frame}[plain]
+\hspace{0.8cm}
+\begin{minipage}{\textwidth}
+% \begin{backgroundblock}{-2.5cm}{-1.6cm}
+%  {\transparent{0.4}\includegraphics[width = 1.8\textwidth, height = 1.4\textheight]{}}
+% \end{backgroundblock}
+ \titlepage
+\end{minipage}
+\end{frame}
+\parskip=0.2cm
+
+%-------------------------------------- INDEX
+\begin{frame}[plain]
+\large{
+\parindent=1cm
+\tableofcontents
+\parindent=0cm
+}
+\end{frame}
+
+
+%-------------------------------------- STARTS THE PRESENTATION
+\section{Introduction}\label{Introduction}
+\begin{frame}{Introduction}
+\end{frame}
+
+
+%-------------------------------------- BIBLIOGRAPHY
+\section{Bibliography}\label{Bibliography}
+\begin{frame}{Bibliography}
+ \begin{thebibliography}{}
+  \parskip=3mm
+  \bibitem{} Author, {\it title}, press, place (year).
+  \end{thebibliography}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,145 @@
+\documentclass[a4paper,twocolumn,10pt]{article}				% Document definition
+\usepackage[english]{babel}						% Language package
+\usepackage[utf8]{inputenc}						% Coding
+\usepackage{amsthm,amsmath,amsfonts,amssymb,latexsym,color,textcomp}	% Different word managements
+\usepackage{anysize,eurosym,multicol,float,caption,flushend}		% Different table, graphics and float packages
+\usepackage[]{appendix}							% Allows to include appendices
+\usepackage{bm}								% Bold greek letters
+\usepackage{longtable}							% Tables in many pages
+\usepackage{graphicx}							% Include graphics
+\usepackage[]{subfig}							% Allows to include different pictures with different captions
+\usepackage{wrapfig}							% Include pictures and tables with surrounding text
+\usepackage{multirow}							% Allows to combine two or more rows in a table
+\usepackage{lscape}							% Allows to display pages horizontally
+\usepackage{pdflscape}							% Allows to set the pdf file to display horizontal pages in that way
+\usepackage{hyperref}							% Include hyperlinks and interactive text
+\usepackage{fancyhdr}							% Include headers and footnotes
+\usepackage{cite}							% Allows to generate sorted lists of numerical citations
+\usepackage{indentfirst}						% Makes the first line of all sections to be indented
+\usepackage[nottoc]{tocbibind}						% Adds the bibliography and/or index and/or contents to the Table of Contents listing
+\usepackage[bottom]{footmisc}						% Collection of ways to change the typesetting of footnotes
+\usepackage{afterpage}							% Implements a command that expands its argument after the current page is output
+
+% Sets the page to have headers
+\pagestyle{fancy}
+\fancyheadoffset{0cm}
+% ------------------------------- REVIEW'S NAME
+\fancyhead[L]{Review's name}
+% ------------------------------- DATE
+\fancyhead[R]{\today}
+% ------------------------------- HEAD AND FOOT LINES
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Sets the caption options
+\captionsetup{
+font = small,
+font+ = it,
+width = 0.85\textwidth,
+justification = justified,
+}
+
+% Sets the hyperlinks options
+\hypersetup{
+colorlinks = true,
+linkcolor = black,
+filecolor = black,
+urlcolor = black,
+citecolor = black,
+}
+
+% Modifies the spaces before and after the equations
+\let\oldequation = \equation
+\let\endoldequation = \endequation
+\renewenvironment{equation}[1][]{\vspace{0cm}\begin{oldequation}}{\end{oldequation}\vspace{0cm}}
+% Defines another section and subsection commands
+\newcounter{mysection}
+\setcounter{mysection}{1}
+\newcommand{\mysection}[1]{\vspace{0.75cm}\centerline{\textbf{\textit{#1}}}\vspace{0.5cm} 
+\stepcounter{mysection} \setcounter{mysubsection}{1}}
+\newcounter{mysubsection}[mysection]
+\newcommand{\mysubsection}[1]{\vspace{0.5cm}\arabic{mysubsection} - \textbf{\small#1} \vspace{0.25cm}\stepcounter{mysubsection}}
+% Defines a new title, authors and collaboration commands
+\newcommand{\mytitle}[1]{\parbox{\textwidth}{\vspace{0.2cm}\centering\textbf{\Large{#1}}\vspace{0.75cm}}}
+\newcommand{\authors}[1]{\centering\parbox{0.75\textwidth}{\centering\textit{#1}\vspace{0.5cm}}}
+\newcommand{\collaboration}[1]{\parbox{\textwidth}{(The \centering{#1} collaboration)\vspace{0.25cm}}}
+% Modifies the label of the itemize environment
+\renewcommand{\labelitemi}{}
+\renewcommand{\labelitemii}{\textendash}
+
+% Sets the margins (left, right, top, bottom)
+\marginsize{1.5cm}{1.5cm}{1cm}{1.5cm}
+% Distance between paragraphs in the document
+\parskip=0mm
+% Indentation of the first line of the paragraphs
+\parindent=5mm
+% Sets the distance between the two text columns
+\setlength{\columnsep}{0.75cm}
+% Sets the numbering option
+\pagenumbering{arabic}
+
+%-------------------------------------- STARTS THE DOCUMENT
+\begin{document}
+
+% Renews the bibliography and the abstract names (essential to define it here and not before)
+\renewcommand{\refname}{\normalsize{\textit{References}}}
+\renewcommand{\abstractname}{}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\begin{center}
+%----------------------- ARTICLE TITLE
+\mytitle{Title}
+%----------------------- AUTHORS'NAMES
+\authors{Some authors}
+%----------------------- COLLABORATION NAME
+\collaboration{(name)}
+%----------------------- ABSTRACT
+\begin{minipage}{0.95\textwidth}
+\begin{abstract}
+
+This is the abstract.
+
+\vspace{0.75cm}
+\end{abstract}
+\end{minipage}
+\end{center}
+\end{@twocolumnfalse}
+]
+
+%---------- TEXT STARTS HERE
+
+\mysection{Section example}
+
+This is a section example, you can write all you want here.
+
+\mysubsection{Subsection example}
+
+This is a subsection example.
+
+\mysubsection{Another subsection example}
+
+This is another subsection example
+
+\mysection{Another section example}
+
+This is another section example.
+
+%-------------------------------------- BIBLIOGRAPHY
+
+% BibTex bibliography
+% \bibliography{Bibliography}{}
+% \bibliographystyle{unsrt}
+
+% Default bibliography
+\begin{thebibliography}{}
+% Distance between paragraphs in the bibliography
+\parskip=3mm
+% Indentation of the bibliography set to zero
+\parindent=0mm
+
+\bibitem{1}
+\bibitem{2}
+\end{thebibliography}
+
+\end{document}

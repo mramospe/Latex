@@ -1,0 +1,117 @@
+%---------------------------------------%
+% Article base                          %
+%---------------------------------------%
+% AUTHOR: Miguel Ramos Pernas		%
+% e-mail: miguel.ramos.pernas@cern.ch   %
+%---------------------------------------%
+
+\documentclass[a4paper,11pt]{article}					% Document definition
+\usepackage[english]{babel}						% Language package
+\usepackage[utf8]{inputenc}						% Coding
+\usepackage{amsthm,amsmath,amsfonts,amssymb,latexsym,color,textcomp}	% Different word managements
+\usepackage{anysize,eurosym,multicol,float,caption,flushend}		% Different table, graphics and float packages
+\usepackage[]{appendix}							% Allows to include appendices
+\usepackage{bm}								% Bold greek letters
+\usepackage{longtable}							% Tables in many pages
+\usepackage{graphicx}							% Include graphics
+\usepackage[]{subfig}							% Allows to include different pictures with different captions
+\usepackage{wrapfig}							% Include pictures and tables with surrounding text
+\usepackage{multirow}							% Allows to combine two or more rows in a table
+\usepackage{lscape}							% Allows to display pages horizontally
+\usepackage{pdflscape}							% Allows to set the pdf file to display horizontal pages in that way
+\usepackage{hyperref}							% Include hyperlinks and interactive text
+\usepackage{fancyhdr}							% Include headers and footnotes
+\usepackage{cite}							% Allows to generate sorted lists of numerical citations
+\usepackage{indentfirst}						% Makes the first line of all sections to be indented
+\usepackage[nottoc]{tocbibind}						% Adds the bibliography and/or index and/or contents to the Table of Contents listing
+\usepackage[bottom]{footmisc}						% Collection of ways to change the typesetting of footnotes
+\usepackage{afterpage}							% Implements a command that expands its argument after the current page is output
+
+% Style of the page (headers, footnotes and bars on top and bottom), LE means left on even pages, while RO means right on odd pages
+\pagestyle{fancy}
+\fancyhead[LE,RO]{}
+\fancyfoot[LO,RE]{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Sets the caption options
+\captionsetup{
+font=small,
+font+=it,
+width=0.85\textwidth,
+justification=justified,
+}
+
+% Sets the hyperlinks options
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=blue,
+urlcolor=blue,
+citecolor=black,
+}
+
+% To do not display the first pages number
+\pagenumbering{gobble}
+% Modifies the spaces before and after the equations
+\let\oldequation=\equation
+\let\endoldequation=\endequation
+\renewenvironment{equation}[1][]{\vspace{0cm}\begin{oldequation}}{\end{oldequation}\vspace{0cm}
+% This option, together with <align*> allows to enumerate some equations as one writing <\numberthis \label{}> at the end
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+% Allows to write equations in various pages
+\allowdisplaybreaks
+% Sets the margins (left, right, top, bottom)
+\marginsize{2.5cm}{2cm}{1cm}{1.5cm}
+
+%-------------------------------------- TITLE
+\title{\Huge\bf\vspace{7cm} }
+\author{}
+\date{\today}
+
+%-------------------------------------- STARTS THE DOCUMENT
+\begin{document}
+
+\maketitle
+\newpage
+
+%----------------------- INDEX
+% Distance between paragraphs in the index
+\parskip=3mm
+\tableofcontents
+\newpage
+
+% Distance between paragraphs in the document
+\parskip=0mm
+% Indentation in the first line of the document
+\parindent=15mm
+% Resets the numbering
+\pagenumbering{arabic}
+
+%---------- TEXT STARTS HERE
+
+
+
+
+%-------------------------------------- BIBLIOGRAPHY
+\newpage
+
+% BibTex bibliography
+% \bibliography{Bibliography}{}
+% \bibliographystyle{unsrt}
+
+% Default bibliography
+\begin{thebibliography}{}
+% Distance between paragraphs in the bibliography
+\parskip=3mm
+\bibitem{1} 
+\bibitem{2} 
+\end{thebibliography}
+
+%-------------------------------------- APPENDICES
+\begin{appendices}
+ \newpage
+ \section{Appendix}
+\end{appendices}
+
+\end{document}
