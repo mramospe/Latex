@@ -1,1 +1,1 @@
-This package provides different latex templates to make documents. Some of the LaTex packages used could not be present in your computer, so if some issue appears when compiling the source please check the current packages.
+This package provides different latex templates to make documents and presentations. Different templates are provided (article, beamer, ...). The packages start by the name they have been designed for. Those who start with < general > are used in both beamer and latex.
