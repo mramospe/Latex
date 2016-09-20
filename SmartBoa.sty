@@ -1,0 +1,281 @@
+%-------------------------------------------------------------------------------
+% @author: Miguel Ramos Pernas
+% @email:  miguel.ramos.pernas@gmail.com
+% @date:   20/09/2016
+%-------------------------------------------------------------------------------
+%
+% Description:
+% 
+% This file provides a style for doing presentations using beamer. The different
+% variables displayed in the title are:
+%
+% Title
+% Subtitle
+% Author
+% Collaboration(s)/Group(s)
+% Institute
+% Conference
+% Email
+% Date
+% TitlePagePic
+% Logos
+%
+%-------------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{SmartBoa}
+
+% Dependences
+\RequirePackage{etoolbox}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+% Counters used alongside this file
+\newcounter{listcounter}
+\newcounter{totalcounter}
+
+% -------------------------------
+% Definition of the template used
+\definecolor{fancyblue}{RGB}{0,0,120}
+\colorlet{highfb}{fancyblue!20}
+\colorlet{mediumfb}{fancyblue!10}
+\colorlet{lightfb}{fancyblue!5}
+\setbeamercolor{footnamecol}{bg=highfb, fg=fancyblue}
+\setbeamercolor{foottitcol}{bg=mediumfb, fg=fancyblue}
+\setbeamercolor{footdatecol}{bg=lightfb, fg=fancyblue}
+\setbeamercovered{transparent}
+\mode<presentation>{
+  \usetheme{Boadilla}
+  \useinnertheme{circles}
+  \usefonttheme{structurebold}
+  \usefonttheme[onlymath]{serif}
+
+  \beamertemplatenavigationsymbolsempty
+  
+  \usecolortheme[named = fancyblue]{structure}
+  
+  \setbeamercolor*{frametitle}{fg = fancyblue, bg = highfb}
+  \setbeamercolor*{block title}{fg = fancyblue, bg = mediumfb}
+  \setbeamercolor*{block body}{fg = black, bg = lightfb}
+  
+  \setbeamercovered{invisible}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
+  \setbeamerfont{subtitle}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{author}{size=\large, series=\bfseries,parent=structure}
+  \setbeamerfont{colls}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{conference}{size=\large, series=\bfseries, parent=structure}
+  \setbeamerfont{date}{size=\normalsize, series=\bfseries, parent=structure}
+
+  \setbeamerfont{footline}{size=\scriptsize, series=\bfseries, parent=structure}
+}
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{%
+  \begin{beamercolorbox}[wd=0.30\paperwidth, ht=3ex, dp=1.5ex, center]{footnamecol}%
+    \usebeamerfont{footline}\@Author
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.35\paperwidth, ht=3ex, dp=1.5ex, center]{foottitcol}%
+    \usebeamerfont{footline}\@RawTitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.35\paperwidth, ht=3ex, dp=1.5ex, center]{footdatecol}
+    \usebeamerfont{footline}
+    (\ifdefined\@Conference\@Conference, \fi\@Date)\hspace{5ex}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}
+  \vskip0pt
+}
+
+% ------------------------------------------------------------------------------------
+% Definition of the different commands to customize the title page of the presentation
+
+% Command to build the list of collaborations. The command < reptemp > must be
+% used to avoid the inclusion of extra white-spaces.
+\newcommand{\InsertColls}[2] {
+
+  % Gets the number of input parameters
+  \setcounter{totalcounter}{0}
+  \renewcommand*{\do}[1]{\stepcounter{totalcounter}}
+  \docsvlist{#1}
+  
+  % Separates the names by a comma and the last one by < and >
+  \setcounter{listcounter}{0}
+  \renewcommand*{\do}[1]{
+    \stepcounter{listcounter}
+    \appto\reptemp{ ##1}
+    \ifnum\value{listcounter}<\numexpr\value{totalcounter}-1 \appto\reptemp{,} \fi
+    \ifnum\value{listcounter}=\numexpr\value{totalcounter}-1 \appto\reptemp{ and} \fi
+  }
+
+  % Depending on the number of collaborations changes to plural
+  \def\reptemp{on behalf of the}
+  \docsvlist{#1}
+  \ifnum\value{totalcounter}>1
+  \appto\reptemp{ #2s}
+  \else
+  \appto\reptemp{ #2}
+  \fi
+  \reptemp
+}
+
+% If a background color is not specified via the < bkgcolor > keyword, it will not be drawn
+\define@key{titlekeys}{bkgcolor}{\def\bkgcolor{#1}}
+\newcommand*{\Title}[2][]{
+  \setkeys{titlekeys}{#1}
+  \gdef\@RawTitle{#2}
+  \gdef\@Title{
+    \ifdefined\bkgcolor
+    \tikzstyle{drawblock}=[draw=\bkgcolor, rounded corners, fill=\bkgcolor,
+      fill opacity=1, draw opacity=1 ]
+    \else
+    \tikzstyle{drawblock}=[]
+    \fi
+    \tikz[overlay, remember picture]{
+      \node [drawblock] at (0,0) {#2};
+    }
+  }
+}
+\newcommand*{\Subtitle}[1]{\gdef\@Subtitle{#1}}
+\newcommand*{\Author}[1]{\gdef\@Author{#1}}
+% The default name is < collaboration >, but can be changed using the keyword < bhfname >
+\define@key{collkeys}{bhfname}{\def\bhfname{#1}}
+\newcommand*{\Collaboration}[2][]{
+  \setkeys{collkeys}{#1}
+  \gdef\@Collaboration{
+    \ifdefined\bhfname
+    \InsertColls{#2}{\bhfname}
+    \else
+    \InsertColls{#2}{collaboration}
+    \fi
+  }
+}
+\newcommand*{\Institute}[1]{\gdef\@Institute{#1}}
+\newcommand*{\Conference}[1]{\gdef\@Conference{#1}}
+\newcommand*{\Email}[1]{\gdef\@Email{#1}}
+\newcommand*{\Date}[1]{\gdef\@Date{#1}}
+\newcommand*{\TitlePagePic}[1]{\gdef\@TitlePagePic{#1}}
+\newcommand*{\Logos}[1]{\gdef\@Logos{#1}}
+
+% Command to include a background picture and the logos in the title page
+\newcommand{\TitlePageGraphics}[2]{
+
+  \centering
+  \begin{tikzpicture}[remember picture, overlay]
+
+    % Background picture
+    \node (TITLECENTER) [] at (current page.center) {
+      \ifdefined\@TitlePagePic{%
+        \transparent{0.4}\includegraphics[width = \paperwidth, height = \paperheight]{#1}}
+      \fi
+    };
+
+    % Placement of the logos. The < expandafter > command must be called to avoid errors caused
+    % by points in the names.
+    \ifdefined\@Logos
+    \node (LOGOS) [yshift=-0.35\paperheight] at (TITLECENTER) { };
+    \node (LLOGOS) [xshift=(-0.5\paperwidth - 0.1\paperwidth)] at (LOGOS) { };
+    \node (RLOGOS) [xshift=(+0.5\paperwidth + 0.1\paperwidth)] at (LOGOS) { };
+    \setcounter{totalcounter}{0}
+    \renewcommand*{\do}[1]{\stepcounter{totalcounter}}
+    \expandafter\docsvlist\expandafter{#2}
+    \setcounter{listcounter}{0}
+    \renewcommand*{\do}[1]{
+      \stepcounter{listcounter}
+      \node [] at ($(LLOGOS)!\value{listcounter}/(\value{totalcounter} + 1)!(RLOGOS)$) {
+        \centering
+        \includegraphics[width=0.2\textwidth]{##1}};
+    }
+    \expandafter\docsvlist\expandafter{#2}
+    \fi
+  \end{tikzpicture}
+}
+
+% Definition of the title page format
+\defbeamertemplate*{title page}{customized}[1][]{
+
+  \centering
+  \vspace{2cm}
+  \TitlePageGraphics{\@TitlePagePic}{\@Logos}
+
+  \vspace{-0.25\paperheight}
+  \usebeamerfont{title}\@Title
+  \bigskip
+
+  \ifdefined\@Subtitle
+  \bigskip
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\@Subtitle
+  \fi
+
+  \bigskip
+  \usebeamerfont{author}\@Author\par
+
+  \ifdefined\@Collaboration\vspace{0.1cm}
+  \usebeamerfont{colls}\@Collaboration
+  \fi
+
+  \ifdefined\@Institute
+  \bigskip
+  \@Institute\par
+  \fi
+  
+  \ifdefined\@Email
+  \medskip
+  \@Email
+  \fi
+
+  \ifdefined\@Conference
+  \bigskip
+  \usebeamerfont{conference}\@Conference
+  \fi
+
+  \ifdefined\@Date
+  \medskip
+  \usebeamerfont{date}\@Date\par
+  \fi
+
+  \addtocounter{framenumber}{-1}
+}
+
+% ---------------------------------------------------
+% Generates two columns with one minipage in each one
+\define@key{TwoColSlideKeys}{colsep}{\def\colsep{#1}}
+\define@key{TwoColSlideKeys}{fwidth}{\def\fwidth{#1}}
+\define@key{TwoColSlideKeys}{swidth}{\def\swidth{#1}}
+\newcommand{\TwoColSlide}[3][] {
+
+  \setkeys{TwoColSlideKeys}{#1}
+  \ifdefined\colsep\else\def\colsep{0.05\textwidth}\fi
+  \ifdefined\fwidth\else\def\fwidth{0.45\textwidth}\fi
+  \ifdefined\swidth\else\def\swidth{0.45\textwidth}\fi
+  
+  \centering
+
+  \begin{minipage}{\fwidth}
+    #2
+  \end{minipage}
+  \hspace{\colsep}
+  \begin{minipage}{\swidth}
+    #3
+  \end{minipage}
+}
+
+% --------------------------------------------
+% To set rows in a table with different colors
+\def\rowcolor{\noalign{\ifnum0=`}\fi\bmr@rowcolor}
+\newcommand<>{\bmr@rowcolor}{\alt#1
+  {\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb]
+    {\ifnum0=`{\fi}\@gooble@rowcolor}
+  }
+}
+\newcommand{\@gooble@rowcolor}[2][]{\@gooble@rowcolor@}
+\newcommand{\@gooble@rowcolor@}[1][]{\@gooble@rowcolor@@}
+\newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
+
+% -----------------------------------------
+% Defines backup frames (without numbering)
+\newenvironment{backupframe}[1][]{
+  \addtocounter{framenumber}{-1}
+  \begin{frame}[plain]{#1}}{\end{frame}
+}
+
+\endinput
