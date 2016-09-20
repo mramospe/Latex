@@ -13,6 +13,8 @@
 *.out
 *.aux
 *.backup
+*.nav
+*.toc
 
 # Packages #
 ############
