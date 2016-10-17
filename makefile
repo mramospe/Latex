@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # @author: Miguel Ramos Pernas
 # @email:  miguel.ramos.pernas@gmail.com
-# @date:   20/09/2016
+# @date:   17/10/2016
 #-------------------------------------------------------------------------------
 # 
 # Description:
@@ -17,12 +17,14 @@ MAIN       = main
 CMD        = pdflatex
 
 FIGURES=$(wildcard ./figs/*)
-SOURCE=$(wildcard *.tex) $(wildcard *.bib)
+SOURCE=$(wildcard *.tex) $(wildcard *.sty) $(wildcard *.bib)
 OUTPUT=$(OUTPUTFILE).pdf
 
 $(OUTPUT): $(MAIN).tex $(SOURCE) $(FIGURES) makefile
 	$(CMD) $<
+ifneq ($(OUTPUT),$(MAIN).pdf)
 	@mv $(MAIN).pdf $(OUTPUT)
-	@echo $(FIGURES)
+	@echo Output file renamed as $(OUTPUT)
+endif
 clean:
 	rm -f *~ *.aux *.snm *.nav *.toc *.log *.bbl *.blg *.dvi *.tmp *.out *.blg *.bbl $(OUTPUT)

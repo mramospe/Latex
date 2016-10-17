@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % @author: Miguel Ramos Pernas
 % @email:  miguel.ramos.pernas@gmail.com
-% @date:   20/09/2016
+% @date:   17/10/2016
 %-------------------------------------------------------------------------------
 %
 % Description:
@@ -33,6 +33,12 @@
 % Counters used alongside this file
 \newcounter{listcounter}
 \newcounter{totalcounter}
+
+% ---------------------------------------------------
+% Variables to control the width of the three footers
+\newcommand{\footleftwidth}{0.30\paperwidth}
+\newcommand{\footmidwidth}{0.35\paperwidth}
+\newcommand{\footrightwidth}{0.35\paperwidth}
 
 % -------------------------------
 % Definition of the template used
@@ -72,13 +78,13 @@
 \setbeamertemplate{footline}{
   \leavevmode
   \hbox{%
-  \begin{beamercolorbox}[wd=0.30\paperwidth, ht=3ex, dp=1.5ex, center]{footnamecol}%
+  \begin{beamercolorbox}[wd=\footleftwidth, ht=3ex, dp=1.5ex, center]{footnamecol}%
     \usebeamerfont{footline}\@Author
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=0.35\paperwidth, ht=3ex, dp=1.5ex, center]{foottitcol}%
+  \begin{beamercolorbox}[wd=\footmidwidth, ht=3ex, dp=1.5ex, center]{foottitcol}%
     \usebeamerfont{footline}\@RawTitle
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=0.35\paperwidth, ht=3ex, dp=1.5ex, center]{footdatecol}
+  \begin{beamercolorbox}[wd=\footrightwidth, ht=3ex, dp=1.5ex, center]{footdatecol}
     \usebeamerfont{footline}
     (\ifdefined\@Conference\@Conference, \fi\@Date)\hspace{5ex}
     \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
@@ -118,21 +124,32 @@
   \reptemp
 }
 
-% If a background color is not specified via the < bkgcolor > keyword, it will not be drawn
-\define@key{titlekeys}{bkgcolor}{\def\bkgcolor{#1}}
+% If a background color is not specified via the < bgcolor > keyword, it will not be drawn. The
+% default color for the title is fancyblue. This can be modified with the < fg > keyword.
+\define@key{titlekeys}{bgcolor}{\def\bgcolor{#1}}
+\define@key{titlekeys}{fgcolor}{\def\fgcolor{#1}}
 \newcommand*{\Title}[2][]{
   \setkeys{titlekeys}{#1}
   \gdef\@RawTitle{#2}
   \gdef\@Title{
-    \ifdefined\bkgcolor
-    \tikzstyle{drawblock}=[draw=\bkgcolor, rounded corners, fill=\bkgcolor,
+    \ifdefined\bgcolor
+    \tikzstyle{drawblock}=[draw=\bgcolor, rounded corners, fill=\bgcolor,
       fill opacity=1, draw opacity=1 ]
     \else
     \tikzstyle{drawblock}=[]
     \fi
+    \ifdefined\fgcolor
+    \else
+    \def\fgcolor{fancyblue}
+    \fi
     \tikz[overlay, remember picture]{
-      \node [drawblock] at (0,0) {#2};
+      \node [drawblock, text=\fgcolor] at (0,0) {%
+        \centering\begin{minipage}{0.9\textwidth}\centering #2 \end{minipage}
+      };
     }
+    \ifdefined\bgcolor
+    \bigskip
+    \fi
   }
 }
 \newcommand*{\Subtitle}[1]{\gdef\@Subtitle{#1}}
@@ -194,6 +211,7 @@
 \defbeamertemplate*{title page}{customized}[1][]{
 
   \centering
+  
   \vspace{2cm}
   \TitlePageGraphics{\@TitlePagePic}{\@Logos}
 
@@ -248,7 +266,7 @@
   \ifdefined\fwidth\else\def\fwidth{0.45\textwidth}\fi
   \ifdefined\swidth\else\def\swidth{0.45\textwidth}\fi
   
-  \centering
+  \begin{center}
 
   \begin{minipage}{\fwidth}
     #2
@@ -257,6 +275,8 @@
   \begin{minipage}{\swidth}
     #3
   \end{minipage}
+
+  \end{center}
 }
 
 % --------------------------------------------
