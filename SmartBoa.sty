@@ -30,6 +30,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
+\RequirePackage{xifthen}
 
 % Set the hyperlinks options
 \hypersetup{
@@ -39,6 +40,10 @@
   urlcolor=blue,
   citecolor=black,
 }
+
+% Conditional to enable/disable the page numbers, (true by default)
+\newif\ifpagenumbers
+\pagenumberstrue
 
 % Counters used alongside this file
 \newcounter{listcounter}
@@ -98,14 +103,17 @@
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=\footrightwidth, ht=3ex, dp=1.5ex, center]{footdatecol}
     \usebeamerfont{footline}
-    (\ifdefined\@Conference\@Conference, \fi\@Date)\hspace{5ex}
-    \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    (\ifdefined\@Conference\@Conference, \fi\@Date)
+    \ifpagenumbers
+    \hspace{5ex}\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    \fi
   \end{beamercolorbox}}
   \vskip0pt
 }
 
 % ------------------------------------------------------------------------------------
-% Definition of the different commands to customize the title page of the presentation
+% Definition of the different commands to customize the title page of
+% the presentation
 
 % Command to build the list of collaborations. The command < reptemp > must be
 % used to avoid the inclusion of extra white-spaces.
@@ -136,8 +144,9 @@
   \reptemp
 }
 
-% If a background color is not specified via the < bgcolor > keyword, it will not be drawn. The
-% default color for the title is fancyblue. This can be modified with the < fg > keyword.
+% If a background color is not specified via the < bgcolor > keyword, it will
+% not be drawn. The default color for the title is fancyblue. This can be
+% modified with the < fg > keyword.
 \define@key{titlekeys}{bgcolor}{\def\bgcolor{#1}}
 \define@key{titlekeys}{fgcolor}{\def\fgcolor{#1}}
 \newcommand*{\Title}[2][]{
@@ -166,7 +175,8 @@
 }
 \newcommand*{\Subtitle}[1]{\gdef\@Subtitle{#1}}
 \newcommand*{\Author}[1]{\gdef\@Author{#1}}
-% The default name is < collaboration >, but can be changed using the keyword < bhfname >
+% The default name is < collaboration >, but can be changed using the
+% keyword < bhfname >
 \define@key{collkeys}{bhfname}{\def\bhfname{#1}}
 \newcommand*{\Collaboration}[2][]{
   \setkeys{collkeys}{#1}
@@ -198,8 +208,8 @@
       \fi
     };
 
-    % Placement of the logos. The < expandafter > command must be called to avoid errors caused
-    % by points in the names.
+    % Placement of the logos. The < expandafter > command must be called
+    % to avoid errors caused by points in the names.
     \ifdefined\@Logos
     \node (LOGOS) [yshift=-0.35\paperheight] at (TITLECENTER) { };
     \node (LLOGOS) [xshift=(-0.5\paperwidth - 0.1\paperwidth)] at (LOGOS) { };
@@ -303,10 +313,14 @@
 \newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
 
 % -----------------------------------------
-% Defines backup frames (without numbering)
-\newenvironment{backupframe}[1][]{
+% Defines backup frames
+\newenvironment{backupframe}[2][]{
+  \pagenumbersfalse
   \addtocounter{framenumber}{-1}
-  \begin{frame}[plain]{#1}}{\end{frame}
+  \ifthenelse{\equal{#1}{}}{%
+    \begin{frame}{#2}}{%
+    \begin{frame}[#1]{#2}}}{%
+    \end{frame}
 }
 
 \endinput
