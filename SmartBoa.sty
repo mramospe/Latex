@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------------
 % @author: Miguel Ramos Pernas
 % @email:  miguel.ramos.pernas@gmail.com
-% @date:   25/10/2016
+% @date:   21/11/2016
 %-------------------------------------------------------------------------------
 %
 % Description:
@@ -78,6 +78,8 @@
   \setbeamertemplate{blocks}[rounded][shadow=true]
   \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
   \setbeamerfont{subtitle}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{institute}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{email}{size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{author}{size=\large, series=\bfseries,parent=structure}
   \setbeamerfont{colls}{size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{conference}{size=\large, series=\bfseries, parent=structure}
@@ -243,12 +245,12 @@
 
   \ifdefined\@Institute
   \bigskip
-  \@Institute\par
+  \usebeamerfont{institute}\@Institute\par
   \fi
   
   \ifdefined\@Email
   \medskip
-  \@Email
+  \usebeamerfont{email}\@Email
   \fi
 
   \ifdefined\@Conference
@@ -292,11 +294,10 @@
 % --------------------------------------------
 % To set rows in a table with different colors
 \def\rowcolor{\noalign{\ifnum0=`}\fi\bmr@rowcolor}
-\newcommand<>{\bmr@rowcolor}{\alt#1
-  {\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb]
-    {\ifnum0=`{\fi}\@gooble@rowcolor}
-  }
-}
+\newcommand<>{\bmr@rowcolor}{%
+\alt#1%
+{\global\let\CT@do@color\CT@@do@color\@ifnextchar[\CT@rowa\CT@rowb}%
+{\ifnum0=`{\fi}\@gooble@rowcolor}}
 \newcommand{\@gooble@rowcolor}[2][]{\@gooble@rowcolor@}
 \newcommand{\@gooble@rowcolor@}[1][]{\@gooble@rowcolor@@}
 \newcommand{\@gooble@rowcolor@@}[1][]{\ignorespaces}
