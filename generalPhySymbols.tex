@@ -14,6 +14,9 @@
 % Ensures a math expression and adds a space at the end
 \newcommand{\MyMath}[1]{\ensuremath{#1}\xspace}
 
+% Magnitudes
+\newcommand{\pt}{\MyMath{p_T}}
+
 % Units
 \newcommand{\MeV}{\text{MeV}}
 \newcommand{\MeVc}{\text{MeV/c}}
@@ -21,20 +24,40 @@
 \newcommand{\GeV}{\text{GeV}}
 \newcommand{\GeVc}{\text{GeV/c}}
 \newcommand{\GeVcc}{\text{GeV/c}\ensuremath{^2}}
+\newcommand{\TeV}{\text{TeV}}
+\newcommand{\TeVc}{\text{TeV/c}}
+\newcommand{\TeVcc}{\text{TeV/c}\ensuremath{^2}}
+\newcommand{\m}{\text{m}}
+\newcommand{\cm}{\text{cm}}
 \newcommand{\mm}{\text{mm}}
 \newcommand{\fb}{\text{fb}}
+\newcommand{\ifb}{\MyMath{\fb^{-1}}}
 \newcommand{\clight}{\text{c}}
 \newcommand{\Hz}{\text{Hz}}
 \newcommand{\MB}{\text{MB}}
 \newcommand{\CL}{\text{CL}}
+\newcommand{\s}{\text{s}}
 \newcommand{\ms}{\text{ms}}
 \newcommand{\ps}{\text{ps}}
 
 % Particles
+\newcommand{\Az}{\MyMath{\text{A}^0_1}}
+\newcommand{\Lb}{\MyMath{\Lambda_b}}
 \newcommand{\Bd}{\MyMath{\text{B}^0}}
 \newcommand{\Bs}{\MyMath{\text{B}_s^0}}
 \newcommand{\Bc}{\MyMath{\text{B}_c^+}}
 \newcommand{\KS}{\MyMath{\text{K}_S^0}}
 \newcommand{\KL}{\MyMath{\text{K}_L^0}}
-\newcommand{\Sigmapm}{\MyMath{\Sigma^\pm}}
 \newcommand{\Kpm}{\MyMath{\text{K}^\pm}}
+\newcommand{\Lz}{\MyMath{\Lambda^0}}
+\newcommand{\Sigmapm}{\MyMath{\Sigma^\pm}}
+\newcommand{\mup}{\MyMath{\mu^+}}
+\newcommand{\mum}{\MyMath{\mu^-}}
+\newcommand{\pip}{\MyMath{\pi^+}}
+\newcommand{\pim}{\MyMath{\pi^-}}
+\newcommand{\Kp}{\MyMath{K^+}}
+\newcommand{\Km}{\MyMath{K^-}}
+
+% To make decays
+\newcommand{\brof}[1]{\MyMath{\mathcal{B}\left(#1\right)}}
+\newcommand{\decay}[2]{\MyMath{#1\rightarrow#2}}

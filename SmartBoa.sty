@@ -59,8 +59,8 @@
 % Definition of the template used
 \definecolor{fancyblue}{RGB}{0,0,120}
 \colorlet{highfb}{fancyblue!20}
-\colorlet{mediumfb}{fancyblue!10}
-\colorlet{lightfb}{fancyblue!5}
+\colorlet{mediumfb}{fancyblue!12}
+\colorlet{lightfb}{fancyblue!8}
 \setbeamercolor{footnamecol}{bg=highfb, fg=fancyblue}
 \setbeamercolor{foottitcol}{bg=mediumfb, fg=fancyblue}
 \setbeamercolor{footdatecol}{bg=lightfb, fg=fancyblue}
@@ -82,7 +82,7 @@
   \setbeamercovered{invisible}
   \setbeamertemplate{blocks}[rounded][shadow=true]
   \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
-  \setbeamerfont{subtitle}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{subtitle}{size=\fontsize{12pt}{3pt}, series=\bfseries, parent=structure}
   \setbeamerfont{institute}{size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{email}{size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{author}{size=\large, series=\bfseries,parent=structure}
@@ -105,7 +105,7 @@
     \usebeamerfont{footline}
     (\ifdefined\@Conference\@Conference, \fi\@Date)
     \ifpagenumbers
-    \hspace{5ex}\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    \hspace{5ex}\insertframenumber{}
     \fi
   \end{beamercolorbox}}
   \vskip0pt
@@ -239,7 +239,7 @@
 
   \vspace{-0.25\paperheight}
   \usebeamerfont{title}\@Title
-  \bigskip
+  \medskip
 
   \ifdefined\@Subtitle
   \bigskip
@@ -321,6 +321,16 @@
     \begin{frame}{#2}}{%
     \begin{frame}[#1]{#2}}}{%
     \end{frame}
+}
+
+% -----------------------------------------
+% Non indent block
+\newenvironment{niblock}[2][]{
+  \setlength{\leftmargini}{10pt}
+  \ifthenelse{\equal{#1}{}}{%
+    \begin{block}{#2}}{%
+    \begin{block}[#1]{#2}}}{%
+    \end{block}
 }
 
 \endinput
