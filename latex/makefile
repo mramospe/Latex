@@ -1,9 +1,8 @@
 #-------------------------------------------------------------------------------
 # @author: Miguel Ramos Pernas
 # @email:  miguel.ramos.pernas@gmail.com
-# @date:   17/10/2016
 #-------------------------------------------------------------------------------
-# 
+#
 # Description:
 #
 # Makefile to compile latex code. The output file must be defined in

@@ -1,7 +1,6 @@
 %-------------------------------------------------------------------------------
 % @author: Miguel Ramos Pernas
 % @email:  miguel.ramos.pernas@gmail.com
-% @date:   23/05/2017
 %-------------------------------------------------------------------------------
 %
 % Description:
@@ -16,21 +15,18 @@
 \usepackage[english]{babel}
 
 % The style to be loaded
-\usepackage{SmartBoa}
+\usepackage{smartboa}
 
 % Packages to be used
-\input{beamerExtraPkgs}
-
-% User symbols
-\input{generalPhySymbols}
+\input{beamer_pkgs}
 
 %-------------------------------------- TITLE
 
-\Title[bgcolor=mediumfb]{$\mathbf{\text{Title with subscripts and superscripts }L_{A}^{12}}$}
+\Title[bgcolor=mediumfb]{Title with sub(super)scripts \boldmath{$L_{A}^{12}$}}
 \Subtitle{This is the subtitle}
 \Conference{My conference}
 \Author{These are the authors}
-\Collaboration{LHCb, MasterCode}
+\Collaboration{first, second}
 \Institute{My institute}
 \Email{e-mail for the replies}
 \Date{\today}
@@ -59,22 +55,7 @@
 
 
 %-------------------------------------- STARTS THE PRESENTATION
-\section{Introduction}\label{Introduction}
-\begin{frame}{Introduction}
-
-  This is the introduction
-  
-  \TwoColSlide{
-    \begin{block}{This is block 1}
-      Block 1
-    \end{block}
-  }{
-    \begin{block}{This is block 2}
-      Block 2
-    \end{block}
-  }
-\end{frame}
-
+\input{test}
 
 %-------------------------------------- BIBLIOGRAPHY
 \begin{frame}{Bibliography}
@@ -85,11 +66,15 @@
 \end{frame}
 
 %-------------------------------------- BACKUP
-\begin{backupframe}
+\begin{backupframe}{}
   \centering
   \vspace{0.1cm}
   \textbf{\Huge{BACKUP}}
 \end{backupframe}
 
+\begin{backupframe}{First backup slide}
+  \centering
+  A backup slide has no number
+\end{backupframe}
 
 \end{document}

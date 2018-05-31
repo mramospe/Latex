@@ -1,11 +1,10 @@
 %-------------------------------------------------------------------------------
 % @author: Miguel Ramos Pernas
 % @email:  miguel.ramos.pernas@gmail.com
-% @date:   21/11/2016
 %-------------------------------------------------------------------------------
 %
 % Description:
-% 
+%
 % This file provides a style for doing presentations using beamer. The different
 % variables displayed in the title are:
 %
@@ -23,7 +22,7 @@
 %-------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{SmartBoa}
+\ProvidesPackage{smartboa}
 
 % Dependences
 \RequirePackage{etoolbox}
@@ -72,13 +71,13 @@
   \usefonttheme[onlymath]{serif}
 
   \beamertemplatenavigationsymbolsempty
-  
+
   \usecolortheme[named = fancyblue]{structure}
-  
+
   \setbeamercolor*{frametitle}{fg = fancyblue, bg = highfb}
   \setbeamercolor*{block title}{fg = fancyblue, bg = mediumfb}
   \setbeamercolor*{block body}{fg = black, bg = lightfb}
-  
+
   \setbeamercovered{invisible}
   \setbeamertemplate{blocks}[rounded][shadow=true]
   \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
@@ -123,7 +122,7 @@
   \setcounter{totalcounter}{0}
   \renewcommand*{\do}[1]{\stepcounter{totalcounter}}
   \docsvlist{#1}
-  
+
   % Separates the names by a comma and the last one by < and >
   \setcounter{listcounter}{0}
   \renewcommand*{\do}[1]{
@@ -233,7 +232,7 @@
 \defbeamertemplate*{title page}{customized}[1][]{
 
   \centering
-  
+
   \vspace{2cm}
   \TitlePageGraphics{\@TitlePagePic}{\@Logos}
 
@@ -257,7 +256,7 @@
   \bigskip
   \usebeamerfont{institute}\@Institute\par
   \fi
-  
+
   \ifdefined\@Email
   \medskip
   \usebeamerfont{email}\@Email
@@ -287,7 +286,7 @@
   \ifdefined\colsep\else\def\colsep{0.05\textwidth}\fi
   \ifdefined\fwidth\else\def\fwidth{0.45\textwidth}\fi
   \ifdefined\swidth\else\def\swidth{0.45\textwidth}\fi
-  
+
   \begin{center}
 
   \begin{minipage}{\fwidth}
