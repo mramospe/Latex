@@ -56,13 +56,13 @@
 
 % -------------------------------
 % Definition of the template used
-\definecolor{fancyblue}{RGB}{0,0,120}
-\colorlet{highfb}{fancyblue!20}
-\colorlet{mediumfb}{fancyblue!12}
-\colorlet{lightfb}{fancyblue!8}
-\setbeamercolor{footnamecol}{bg=highfb, fg=fancyblue}
-\setbeamercolor{foottitcol}{bg=mediumfb, fg=fancyblue}
-\setbeamercolor{footdatecol}{bg=lightfb, fg=fancyblue}
+\definecolor{maincolor}{RGB}{0,0,120}
+\colorlet{highcolor}{maincolor!20}
+\colorlet{mediumcolor}{maincolor!12}
+\colorlet{lightcolor}{maincolor!8}
+\setbeamercolor{footnamecol}{bg=highcolor, fg=maincolor}
+\setbeamercolor{foottitcol}{bg=mediumcolor, fg=maincolor}
+\setbeamercolor{footdatecol}{bg=lightcolor, fg=maincolor}
 \setbeamercovered{transparent}
 \mode<presentation>{
   \usetheme{Boadilla}
@@ -72,11 +72,11 @@
 
   \beamertemplatenavigationsymbolsempty
 
-  \usecolortheme[named = fancyblue]{structure}
+  \usecolortheme[named=maincolor]{structure}
 
-  \setbeamercolor*{frametitle}{fg = fancyblue, bg = highfb}
-  \setbeamercolor*{block title}{fg = fancyblue, bg = mediumfb}
-  \setbeamercolor*{block body}{fg = black, bg = lightfb}
+  \setbeamercolor*{frametitle}{fg=maincolor, bg=highcolor}
+  \setbeamercolor*{block title}{fg=maincolor, bg=mediumcolor}
+  \setbeamercolor*{block body}{fg=black, bg=lightcolor}
 
   \setbeamercovered{invisible}
   \setbeamertemplate{blocks}[rounded][shadow=true]
@@ -144,7 +144,7 @@
 }
 
 % If a background color is not specified via the < bgcolor > keyword, it will
-% not be drawn. The default color for the title is fancyblue. This can be
+% not be drawn. The default color for the title is 'maincolor'. This can be
 % modified with the < fg > keyword.
 \define@key{titlekeys}{bgcolor}{\def\bgcolor{#1}}
 \define@key{titlekeys}{fgcolor}{\def\fgcolor{#1}}
@@ -160,7 +160,7 @@
     \fi
     \ifdefined\fgcolor
     \else
-    \def\fgcolor{fancyblue}
+    \def\fgcolor{maincolor}
     \fi
     \tikz[overlay, remember picture]{
       \node [drawblock, text=\fgcolor] at (0,0) {%
@@ -333,9 +333,9 @@
 
   \setkeys{sblockkeys}{#1}
 
-  \ifdefined\bgtitle\else\def\bgtitle{mediumfb}\fi
-  \ifdefined\fgtitle\else\def\fgtitle{fancyblue}\fi
-  \ifdefined\bgbody\else\def\bgbody{lightfb}\fi
+  \ifdefined\bgtitle\else\def\bgtitle{mediumcolor}\fi
+  \ifdefined\fgtitle\else\def\fgtitle{maincolor}\fi
+  \ifdefined\bgbody\else\def\bgbody{lightcolor}\fi
   \ifdefined\fgbody\else\def\fgbody{black}\fi
   \ifdefined\blockwidth\else\def\blockwidth{\textwidth}\fi
 
