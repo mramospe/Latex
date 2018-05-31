@@ -1,7 +1,6 @@
 %-------------------------------------------------------------------------------
 % @author: Miguel Ramos Pernas
 % @email:  miguel.ramos.pernas@gmail.com
-% @date:   23/05/2017
 %-------------------------------------------------------------------------------
 %
 % Description:
@@ -11,7 +10,10 @@
 %-------------------------------------------------------------------------------
 \input{../phys_symbols.tex}
 
-\section{Introduction}\label{Introduction}
+%
+% Test general settings
+%
+\section{Introduction}\label{sec:introduction}
 \begin{frame}{Introduction}
 
   This is the introduction
@@ -25,4 +27,73 @@
       Block 2
     \end{block}
   }
+\end{frame}
+
+%
+% Test the symbols
+%
+\section{Symbols}\label{sec:symbols}
+\begin{frame}{Some symbols}
+
+ Magnitudes:\\
+ \energy, \DOCA, \IP, \pt
+
+ Units:\\
+ \MeV, \MeVc, \MeVcc, \GeVcc, \TeVcc, \m, \cm, \mm, \fb, \ifb,
+ \CL, \Hz, \MHz, \s
+
+ Particles:\\
+ \elp, \elm, \mup, \mum, \taup, \taum, \pip, \pim, \Ks, \Kl, \Kp, \Km, \Kpm,
+ \Sigmap, \Lz, \Dpm, \Lcpm, \Bd, \Bs, \Bcpm, \Lb, \Az
+
+ Decays:\\
+ \decay{\Ks}{\mup\mum}, \decay{\Bs}{\mup\mum}, ...
+
+ Branching fractions:\\
+ \brof{\decay{\Ks}{\mup\mum}}, \brof{\decay{\Bs}{\mup\mum}}, ...
+\end{frame}
+
+%
+% Test the block-related features
+%
+\section{SBlock}\label{sec:sblock}
+\begin{frame}{SBlock}
+ \begin{sblock}[bgtitle=yellow,fgtitle=red,bgbody=yellow!30,fgbody=red!30,width=0.8\textwidth]{SBlock with custom width}
+   Something written inside
+ \end{sblock}
+
+ \begin{sblock}{SBlock with default arguments}
+   Something written inside
+ \end{sblock}
+\end{frame}
+
+%
+% Test the itemize-related features
+%
+\section{Itemize}\label{sec:itemize}
+\begin{frame}{Itemize}
+  This is an itemize environment\\
+  \begin{itemize}
+    \item First item
+    \item second item
+  \end{itemize}
+
+  This is a itemize environment with void items\\
+  \begin{itemize}
+  \voiditem First item
+  \voiditem Second item
+  \end{itemize}
+
+  This is a sitemize environment\\
+  \begin{sitemize}[margin=30pt,sitemsep=0.4cm]
+    \item First item
+    \item Second item
+  \end{sitemize}
+
+  This is a check-list\\
+  \begin{sitemize}
+    \todoitem to do
+    \doneitem done
+    \notdoitem will not do
+  \end{sitemize}
 \end{frame}

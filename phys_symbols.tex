@@ -10,53 +10,104 @@
 %
 %-------------------------------------------------------------------------------
 
+%
 % Ensures a math expression and adds a space at the end
+%
 \newcommand{\usemath}[1]{\ensuremath{#1}\xspace}
 
+%
 % Magnitudes
+%
+\newcommand{\energy}{\text{E}}
+\newcommand{\DOCA}{\text{DOCA}}
+\newcommand{\IP}{\text{IP}}
 \newcommand{\pt}{\usemath{p_T}}
 
+%
 % Units
+%
+\newcommand{\sol}{\usemath{c}}
+\newcommand{\cc}{\usemath{\sol^2}}
 \newcommand{\MeV}{\text{MeV}}
-\newcommand{\MeVc}{\text{MeV/c}}
-\newcommand{\MeVcc}{\text{MeV/c}\ensuremath{^2}}
+\newcommand{\MeVc}{\MeV/\sol}
+\newcommand{\MeVcc}{\MeV/\cc}
 \newcommand{\GeV}{\text{GeV}}
-\newcommand{\GeVc}{\text{GeV/c}}
-\newcommand{\GeVcc}{\text{GeV/c}\ensuremath{^2}}
+\newcommand{\GeVc}{\GeV/\sol}
+\newcommand{\GeVcc}{\GeV/\cc}
 \newcommand{\TeV}{\text{TeV}}
-\newcommand{\TeVc}{\text{TeV/c}}
-\newcommand{\TeVcc}{\text{TeV/c}\ensuremath{^2}}
+\newcommand{\TeVc}{\TeV/\sol}
+\newcommand{\TeVcc}{\TeV/\cc}
 \newcommand{\m}{\text{m}}
 \newcommand{\cm}{\text{cm}}
 \newcommand{\mm}{\text{mm}}
 \newcommand{\fb}{\text{fb}}
 \newcommand{\ifb}{\usemath{\fb^{-1}}}
-\newcommand{\clight}{\text{c}}
 \newcommand{\Hz}{\text{Hz}}
+\newcommand{\MHz}{\text{MHz}}
 \newcommand{\MB}{\text{MB}}
 \newcommand{\CL}{\text{CL}}
 \newcommand{\s}{\text{s}}
 \newcommand{\ms}{\text{ms}}
 \newcommand{\ps}{\text{ps}}
 
+%
 % Particles
-\newcommand{\Az}{\usemath{\text{A}^0_1}}
-\newcommand{\Lb}{\usemath{\Lambda_b}}
-\newcommand{\Bd}{\usemath{\text{B}^0}}
-\newcommand{\Bs}{\usemath{\text{B}_s^0}}
-\newcommand{\Bc}{\usemath{\text{B}_c^+}}
-\newcommand{\KS}{\usemath{\text{K}_S^0}}
-\newcommand{\KL}{\usemath{\text{K}_L^0}}
-\newcommand{\Kpm}{\usemath{\text{K}^\pm}}
-\newcommand{\Lz}{\usemath{\Lambda^0}}
-\newcommand{\Sigmapm}{\usemath{\Sigma^\pm}}
+%
+
+% Basic
+\newcommand{\elp}{\usemath{e^+}}
+\newcommand{\elm}{\usemath{e^-}}
 \newcommand{\mup}{\usemath{\mu^+}}
 \newcommand{\mum}{\usemath{\mu^-}}
+\newcommand{\taup}{\usemath{\tau^+}}
+\newcommand{\taum}{\usemath{\tau^-}}
+
+% Unflavoured mesons
 \newcommand{\pip}{\usemath{\pi^+}}
 \newcommand{\pim}{\usemath{\pi^-}}
+
+% Unflavoured baryons
+
+% Strange mesons
+\newcommand{\Ks}{\usemath{\text{K}_S^0}}
+\newcommand{\Kl}{\usemath{\text{K}_L^0}}
 \newcommand{\Kp}{\usemath{K^+}}
 \newcommand{\Km}{\usemath{K^-}}
+\newcommand{\Kpm}{\usemath{K^\pm}}
 
+% Strange baryons
+\newcommand{\Sigmap}{\usemath{\Sigma^+}}
+\newcommand{\Sigmam}{\usemath{\Sigma^-}}
+\newcommand{\Sigmapm}{\usemath{\Sigma^\pm}}
+\newcommand{\Lz}{\usemath{\Lambda^0}}
+
+% Charm mesons
+\newcommand{\Dz}{\usemath{\text{D}^0}}
+\newcommand{\Dp}{\usemath{\text{D}^+}}
+\newcommand{\Dm}{\usemath{\text{D}^-}}
+\newcommand{\Dpm}{\usemath{\text{D}^\pm}}
+\newcommand{\Ds}{\usemath{\text{D}_s^0}}
+
+% Charm baryons
+\newcommand{\Lcp}{\usemath{\Lambda_c^+}}
+\newcommand{\Lcm}{\usemath{\Lambda_c^-}}
+\newcommand{\Lcpm}{\usemath{\Lambda_c^\pm}}
+
+% Beauty mesons
+\newcommand{\Bd}{\usemath{\text{B}^0}}
+\newcommand{\Bs}{\usemath{\text{B}_s^0}}
+\newcommand{\Bcp}{\usemath{\text{B}_c^+}}
+\newcommand{\Bcm}{\usemath{\text{B}_c^-}}
+\newcommand{\Bcpm}{\usemath{\text{B}_c^\pm}}
+
+% Beauty baryons
+\newcommand{\Lb}{\usemath{\Lambda_b^0}}
+
+% Exotic
+\newcommand{\Az}{\usemath{\text{A}^0}}
+
+%
 % To make decays
+%
 \newcommand{\brof}[1]{\usemath{\mathcal{B}\left(#1\right)}}
 \newcommand{\decay}[2]{\usemath{#1\rightarrow#2}}

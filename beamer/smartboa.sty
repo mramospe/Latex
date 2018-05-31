@@ -201,9 +201,9 @@
   \begin{tikzpicture}[remember picture, overlay]
 
     % Background picture
-    \node (TITLECENTER) [] at (current page.center) {
+    \node (TITLECENTER) [opacity=0.4] at (current page.center) {
       \ifdefined\@TitlePagePic{%
-        \transparent{0.4}\includegraphics[width = \paperwidth, height = \paperheight]{#1}}
+        \includegraphics[width=\paperwidth, height=\paperheight]{#1}}
       \fi
     };
 
@@ -323,13 +323,52 @@
 }
 
 % -----------------------------------------
-% Non indent block
-\newenvironment{niblock}[2][]{
-  \setlength{\leftmargini}{10pt}
-  \ifthenelse{\equal{#1}{}}{%
-    \begin{block}{#2}}{%
-    \begin{block}[#1]{#2}}}{%
-    \end{block}
+% Customizable block
+\define@key{sblockkeys}{bgtitle}{\def\bgtitle{#1}}
+\define@key{sblockkeys}{fgtitle}{\def\fgtitle{#1}}
+\define@key{sblockkeys}{bgbody}{\def\bgbody{#1}}
+\define@key{sblockkeys}{fgbody}{\def\fgbody{#1}}
+\define@key{sblockkeys}{width}{\def\blockwidth{#1}}
+\newenvironment{sblock}[2][]{%
+
+  \setkeys{sblockkeys}{#1}
+
+  \ifdefined\bgtitle\else\def\bgtitle{mediumfb}\fi
+  \ifdefined\fgtitle\else\def\fgtitle{fancyblue}\fi
+  \ifdefined\bgbody\else\def\bgbody{lightfb}\fi
+  \ifdefined\fgbody\else\def\fgbody{black}\fi
+  \ifdefined\blockwidth\else\def\blockwidth{\textwidth}\fi
+
+  \begin{minipage}{\blockwidth}
+    \begin{actionenv}
+      \def\insertblocktitle{#2}%
+      \par%
+      \mode<presentation>{%
+        \setbeamercolor*{block title}{bg=\bgtitle, fg=\fgtitle}
+        \setbeamercolor*{block body}{bg=\bgbody, fg=\fgbody}
+        \setbeamertemplate{blocks}[rounded][shadow=true]
+      }%
+      \usebeamertemplate{block begin}
+}{\par\usebeamertemplate{block end}\end{actionenv}\end{minipage}}
+
+% -----------------------------------------
+% Itemize environments and commands
+\newcommand{\voiditem}{\item[]}
+
+\newcommand{\todoitem}{\item[\usemath{\textcolor{black}{\square}}]}
+\newcommand{\doneitem}{\item[\usemath{\textcolor{black}{\square}}]}
+\newcommand{\notdoitem}{\item[\usemath{\textcolor{black}{\square}}]}
+
+\define@key{sitemizekeys}{margin}{\def\margin{#1}}
+\define@key{sitemizekeys}{sitemsep}{\def\sitemsep{#1}}
+\newenvironment{sitemize}[2][]{
+  \setkeys{sitemizekeys}{#1}
+  \ifdefined\margin\setlength{\leftmargini}{\margin}\fi
+  \begin{itemize}%
+    \ifdefined\sitemsep\setlength{\itemsep}{\sitemsep}\fi
+    #2
+}{
+  \end{itemize}
 }
 
 \endinput
