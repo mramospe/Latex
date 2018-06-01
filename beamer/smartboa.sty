@@ -30,6 +30,8 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \RequirePackage{xifthen}
+\RequirePackage{amssymb}
+\RequirePackage{pifont}
 
 % Set the hyperlinks options
 \hypersetup{
@@ -353,11 +355,13 @@
 
 % -----------------------------------------
 % Itemize environments and commands
-\newcommand{\voiditem}{\item[]}
-
-\newcommand{\todoitem}{\item[\usemath{\textcolor{black}{\square}}]}
-\newcommand{\doneitem}{\item[\usemath{\textcolor{black}{\square}}]}
-\newcommand{\notdoitem}{\item[\usemath{\textcolor{black}{\square}}]}
+\definecolor{cmarkgreen}{RGB}{0,153,0}
+\newcommand{\cmark}{\textcolor{cmarkgreen}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}
+\newcommand{\todo}{$\square$}
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+  \hspace{-2.5pt}}
+\newcommand{\wontdo}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
 
 \define@key{sitemizekeys}{margin}{\def\margin{#1}}
 \define@key{sitemizekeys}{sitemsep}{\def\sitemsep{#1}}
