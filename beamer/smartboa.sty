@@ -106,7 +106,7 @@
     \usebeamerfont{footline}
     (\ifdefined\@Conference\@Conference, \fi\@Date)
     \ifpagenumbers
-    \hspace{5ex}\insertframenumber{}
+    \hspace{3ex}\insertframenumber{}
     \fi
   \end{beamercolorbox}}
   \vskip0pt
@@ -212,7 +212,7 @@
     % Placement of the logos. The < expandafter > command must be called
     % to avoid errors caused by points in the names.
     \ifdefined\@Logos
-    \node (LOGOS) [yshift=-0.35\paperheight] at (TITLECENTER) { };
+    \node (LOGOS) [yshift=-0.3\paperheight] at (TITLECENTER) { };
     \node (LLOGOS) [xshift=(-0.5\paperwidth - 0.1\paperwidth)] at (LOGOS) { };
     \node (RLOGOS) [xshift=(+0.5\paperwidth + 0.1\paperwidth)] at (LOGOS) { };
     \setcounter{totalcounter}{0}
@@ -238,7 +238,7 @@
   \vspace{2cm}
   \TitlePageGraphics{\@TitlePagePic}{\@Logos}
 
-  \vspace{-0.25\paperheight}
+  \vspace{-0.3\paperheight}
   \usebeamerfont{title}\@Title
   \medskip
 
@@ -247,7 +247,7 @@
   \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\@Subtitle
   \fi
 
-  \bigskip
+  \vspace{0.075\paperheight}
   \usebeamerfont{author}\@Author\par
 
   \ifdefined\@Collaboration\vspace{0.1cm}
