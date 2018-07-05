@@ -42,6 +42,8 @@
   citecolor=black,
 }
 
+\newcommand{\colorhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
 % Conditional to enable/disable the page numbers, (true by default)
 \newif\ifpagenumbers
 \pagenumberstrue
@@ -85,7 +87,7 @@
   \setbeamerfont{title}{size=\fontsize{16pt}{7pt}, series=\bfseries, parent=structure}
   \setbeamerfont{subtitle}{size=\fontsize{12pt}{3pt}, series=\bfseries, parent=structure}
   \setbeamerfont{institute}{size=\normalsize, series=\bfseries, parent=structure}
-  \setbeamerfont{email}{size=\normalsize, series=\bfseries, parent=structure}
+  \setbeamerfont{email}{family=\ttfamily, size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{author}{size=\large, series=\bfseries,parent=structure}
   \setbeamerfont{colls}{size=\normalsize, series=\bfseries, parent=structure}
   \setbeamerfont{conference}{size=\large, series=\bfseries, parent=structure}
@@ -261,7 +263,7 @@
 
   \ifdefined\@Email
   \medskip
-  \usebeamerfont{email}\@Email
+  \usebeamerfont{email}\colorhref[black]{mailto:\@Email}{\@Email}
   \fi
 
   \ifdefined\@Conference
